@@ -5,11 +5,8 @@
 }}
 
 SELECT
-customer_id as customer_key,
-customer_id,
-first_name,
-last_name,
-email,
-phone_number,
-state
+product_id as product_key,
+product_id,
+product_name,
+description
 FROM {{ source('oliver_landing', 'agents') }}

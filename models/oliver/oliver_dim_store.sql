@@ -5,11 +5,10 @@
 }}
 
 SELECT
-customer_id as customer_key,
-customer_id,
-first_name,
-last_name,
-email,
-phone_number,
+store_id as store_key,
+store_id,
+store_name,
+street,
+city,
 state
 FROM {{ source('oliver_landing', 'agents') }}

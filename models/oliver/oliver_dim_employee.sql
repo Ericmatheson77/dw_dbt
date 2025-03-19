@@ -5,11 +5,12 @@
 }}
 
 SELECT
-customer_id as customer_key,
-customer_id,
+employee_id as employee_key,
+employee_id
 first_name,
 last_name,
 email,
 phone_number,
-state
+hire_date,
+position
 FROM {{ source('oliver_landing', 'agents') }}
