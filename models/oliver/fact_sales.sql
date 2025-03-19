@@ -4,17 +4,18 @@
 ) }}
 
 SELECT
-    p.policy_key,
-    cu.customer_key,
-    a.agent_key,
-    d.date_key,
-    c.ClaimAmount
+    c.customer_key,
+    d.date_day,
+    s.store_key,
+    ol.product_key,
+    e.employee_key,
+    ol.QUANTITY,
+    o.TOTAL_AMOUNT,
+    ol.UNIT_PRICE
 FROM {{ source('oliver_landing', 'orderline') }} ol
-INNER JOIN {{ source('oliver_landing', 'orders') }} o ON c.PolicyID = pd.PolicyID
-INNER JOIN {{ ref('oliver_dim_date') }} p ON pd.PolicyID = p.policyid 
-INNER JOIN {{ ref('oliver_dim_customer') }} cu ON pd.CustomerID = cu.customerid 
-INNER JOIN {{ ref('oliver_dim_employee') }} a ON pd.AgentID = a.agentid 
-INNER JOIN {{ ref('oliver_dim_product') }} d ON d.date_day = c.ClaimDate
-INNER JOIN {{ ref('oliver_dim_store') }} d ON d.date_day = c.ClaimDate
-
-#not finished
+INNER JOIN {{ source('oliver_landing', 'orders') }} o ON o.ORDER_ID = ol.ORDER_ID
+INNER JOIN {{ ref('oliver_dim_date') }} d ON o.ORDER_DATE = d.date_day
+INNER JOIN {{ ref('oliver_dim_customer') }} c ON o.CUSTOMER_ID = c.CUSTOMER_ID
+INNER JOIN {{ ref('oliver_dim_employee') }} e ON o.EMPLOYEE_ID = e.EMPLOYEE_ID
+INNER JOIN {{ ref('oliver_dim_product') }} p ON ol.PRODUCT_ID = p.PRODUCT_ID
+INNER JOIN {{ ref('oliver_dim_store') }} s ON s.STORE_ID = o.STORE_ID
