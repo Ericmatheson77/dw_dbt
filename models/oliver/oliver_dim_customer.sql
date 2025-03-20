@@ -12,4 +12,4 @@ last_name,
 email,
 phone_number,
 state
-FROM {{ source('oliver_landing', 'agents') }}
+FROM {{ source('oliver_landing', 'customer') }}

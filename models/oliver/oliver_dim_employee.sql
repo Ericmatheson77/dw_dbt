@@ -13,4 +13,4 @@ email,
 phone_number,
 hire_date,
 position
-FROM {{ source('oliver_landing', 'agents') }}
+FROM {{ source('oliver_landing', 'employee') }}

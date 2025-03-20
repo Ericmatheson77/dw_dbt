@@ -11,4 +11,4 @@ store_name,
 street,
 city,
 state
-FROM {{ source('oliver_landing', 'agents') }}
+FROM {{ source('oliver_landing', 'store') }}
