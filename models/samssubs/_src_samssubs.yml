@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: orders_landing
+    database: ericmatheson
+    schema: samssubs_source_sams_subs
+    tables:
+      - name: customer
+      - name: employee
+      - name: '"ORDER"'
+      - name: orderdetails
+      - name: product
+      - name: sandwich
+      - name: store
+
+  - name: web_landing
+    schema: samssubs_source
+    tables:
+      - name: web_traffic_events
